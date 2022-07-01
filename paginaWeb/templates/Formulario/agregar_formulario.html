@@ -1,0 +1,18 @@
+{% extends 'Formulario/base/base.html' %} 
+
+{% block titulo_principal %} Formulario {% endblock %}
+
+<!--Esta página fue creada para agregar un formulario.-->
+{% block content %}
+    <h1>Agregar formulario</h1>
+    
+    <div class="content container">
+    <form method="POST" id="validar">
+        {% csrf_token %} {{ form }}
+        <!--También añadimos un botón para grabar y para volver al home.-->
+        <div>
+        <button type="submit-success" class="btn btn-success">Grabar</button>
+        </div>
+    </form>
+    </div>
+{% endblock %}

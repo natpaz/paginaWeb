@@ -1,0 +1,22 @@
+{% extends 'Usuario/base/base.html' %} 
+
+<!--Esta página fue creada para listar usuarios.-->
+<title>{% block title %}Lista de Usuarios{% endblock title %}</title>
+
+{% block content %}
+{% block titulo_principal %} Lista de Usuarios Registrados {% endblock %}
+    {% if object_list %}
+
+        {% for user in object_list %}
+            <p>Nombre: {{ user.username }}</p>
+            <p>email: {{ user.email }}</p>      
+            <br>
+        {% endfor %}
+        
+    {% else %}
+        <h1>No hay registros de user</h1>
+    {% endif %}
+
+    <td><a class="btn btn-success" href="{% url 'home'%}">Volver</a></td>
+
+{% endblock %}

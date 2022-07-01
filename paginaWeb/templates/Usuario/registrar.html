@@ -1,0 +1,19 @@
+{% extends 'Usuario/base/base.html' %} 
+{%load static%}
+
+        <!--Esta página fue creada para poder registrarse.-->
+        <title>{% block title %}Registro{% endblock title %}</title>
+        {% block css %} {% endblock css %}
+        <link type='text/css' href='{% static 'css/estilo.css' %}' rel='stylesheet'/>
+
+{% block content %}
+    <h1>Agregar usuario</h1>
+    
+    <div class="content container">
+    <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit-success" class="btn btn-success">Grabar</button>
+    </form>
+    </div>
+
+{% endblock %}

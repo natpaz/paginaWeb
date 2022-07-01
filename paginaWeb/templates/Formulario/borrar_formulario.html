@@ -1,0 +1,15 @@
+{% extends 'Formulario/base/base.html' %} 
+
+<!--Esta página fue creada para eliminar un formulario.-->
+{% block content %}
+    <div class="text-center">
+        <form method="post">
+            {% csrf_token %}
+
+            <p class="delete-msg">¿Estás seguro de que quieres eliminar{{ object.nombre }}?</p>
+
+            <a href="{% url 'listar_formulario' %}" class="btn btn-secondary">NO</a>
+            <button class="btn btn-primary" type="submit">Si</button>
+        </form>
+    </div>
+{% endblock %}

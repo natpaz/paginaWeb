@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<html>
+    <head>
+        <!-- Acá le damos el nombre a la página -->
+        <title>{% block title %}Accesorios{% endblock title %}</title>
+        {% block css %} {% endblock css %}
+        <link type='text/css' href='{% static 'css/accesorios.css' %}' rel='stylesheet'/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    </head>
+    <body>
+        
+    {% block navbar %}
+    <!-- Acá creamos la barra de navegación -->
+    <h1>Tienda de mascotas</h1>
+    <nav id="navbar">
+        <div id="nav">
+            <ul>            
+                <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a href="{% url 'accesorios' %}">Accesorios</a></li>
+                <li class="nav-item"><a href="{% url 'entretencion' %}">Entretención</a></li>
+                <li class="nav-item"><a href="{% url 'higiene' %}">Higiene</a></li>
+                <li class="nav-item"><a href="{% url 'agregar_formulario' %}">Formulario</a></li>
+                <li class="nav-item"><a href="{% url 'registrar' %}">Registrarse</a></li>
+        
+                {% if not user.is_authenticated %}        
+                <li class="nav-item"><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <li class="nav-item"><a href="{% url 'listar_formulario' %}">Listar Formularios</a></li>
+                <li class="nav-item"><a href="{% url 'listar_usuario' %}">Listar Usuarios</a></li>
+                {% endif %}
+
+                <li class="nav-item"><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                <span class="ml-md-5"><strong>Usuario: {{ user.get_username }}</strong></span>
+                {% endif %}               
+            </ul>
+        </div>                                 
+    </nav>
+    {% endblock %}
+
+    <!-- Acá creamos el bloque sección para ingresar los productos en venta. -->
+    {% block section%}
+    <section>
+        <div class="contenedor">
+            <div class="item" id="item1">
+                <img class="four-columns" src="static/img/accesorios/agato1.png" alt="Collar humita Pawise"><h2>Collar humita Pawise</h2>
+                    <p>$3.000</p>
+            </div>
+            <div class="item" id="item2">
+                <img class="four-columns" src="static/img/accesorios/agato2.png" alt="Collar Wonder Cat"><h2>Collar Wonder Cat</h2>
+                    <p>$3.000</p>
+            </div>
+            <div class="item" id="item3">
+                <img class="four-columns" src="static/img/accesorios/agato3.png" alt="Cinturón de seguridad Mascan"><h2>Cinturón de seguridad Mascan</h2>
+                    <p>$2.000</p>
+            </div>
+            <div class="item" id="item4">
+                <img class="four-columns" src="static/img/accesorios/agato4.png" alt="Arnés y correa Zeecat"><h2>Arnés y correa Zeecat</h2>
+                    <p>$4.000</p>
+            </div>
+            <div class="item" id="item5">
+                <img class="four-columns" src="static/img/accesorios/aperro1.png" alt="Humita Memphis"><h2>Humita Memphis</h2>
+                    <p>$1.500</p>
+            </div>
+            <div class="item" id="item6">
+                <img class="four-columns" src="static/img/accesorios/aperro2.png" alt="Bandana chispas Simona"><h2>Bandana chispas Simona</h2>
+                <p>$2.000</p>
+            </div>
+            <div class="item" id="item7">
+                <img class="four-columns" src="static/img/accesorios/aperro3.png" alt="Arnés Wonder Dog"><h2>Arnés Wonder Dog</h2>
+                <p>$4.000</p>
+            </div>
+            <div class="item" id="item8">
+                <img class="four-columns" src="static/img/accesorios/aperro4.png" alt="Arnés doble Wonder Dog"><h2>Arnés doble Wonder Dog</h2>
+                <p>$4.000</p>
+            </div>
+            <div class="item" id="item9">
+                <img class="four-columns" src="static/img/accesorios/agatoyperro1.png" alt="Chapita My Family"><h2>Chapita My Family</h2>
+                <p>$1.000</p>
+            </div>
+            <div class="item" id="item10">
+                <img class="four-columns" src="static/img/accesorios/agatoyperro2.png" alt="Chapita My Family"><h2>Chapita My Family</h2>
+                <p>$1.000</p>
+            </div>   
+            <div class="item" id="item11">
+                <img class="four-columns" src="static/img/accesorios/agatoyperro3.png" alt="Chapita My Family"><h2>Chapita My Family</h2>
+                <p>$1.000</p>
+            </div>
+            <div class="item" id="item12">
+                <img class="four-columns" src="static/img/accesorios/agatoyperro4.png" alt="Chapita My Family"><h2>Chapita My Family</h2>
+                <p>$1.000</p>
+            </div> 
+        </div>
+    </section>
+    {%endblock%}
+
+    <!-- Acá creamos el bloque del footer -->
+    {%block footer%}
+    <footer>
+        <div class="footer-content">
+            <h2>Curacaví, Avenida O'higgins #505</h2>
+            <p>Tienda especializada en mascotas. Contáctanos en nuestras redes sociales.</p>
+            <ul class="redes">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy;2022. Designed By Natalia and Javiera</p>
+        </div>
+    </footer>
+    {%endblock%}
+
+</body>
+</html>

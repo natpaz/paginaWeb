@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    {% block extrastatic %}
+    {% endblock %}
+    <link type='text/css' href='{% static 'css/estilo.css' %}' rel='stylesheet'/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <!-- Acá creamos la barra de navegación -->
+    {% block navbar %}
+    <h1>Tienda de mascotas</h1>
+    <nav id="navbar">
+        <div id="nav">
+            <ul>            
+                <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a href="{% url 'accesorios' %}">Accesorios</a></li>
+                <li class="nav-item"><a href="{% url 'entretencion' %}">Entretención</a></li>
+                <li class="nav-item"><a href="{% url 'higiene' %}">Higiene</a></li>
+                <li class="nav-item"><a href="{% url 'agregar_formulario' %}">Formulario</a></li>
+                <li class="nav-item"><a href="{% url 'registrar' %}">Registrarse</a></li>
+        
+                {% if not user.is_authenticated %}        
+                <li class="nav-item"><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <li class="nav-item"><a href="{% url 'listar_formulario' %}">Listar Formularios</a></li>
+                <li class="nav-item"><a href="{% url 'listar_usuario' %}">Listar Usuarios</a></li>
+                {% endif %}
+
+                <li class="nav-item"><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                <span class="ml-md-5"><strong>Usuario: {{ user.get_username }}</strong></span>
+                {% endif %}                
+            </ul>
+        </div>                                 
+    </nav>
+    {% endblock %}
+    <div class="container">
+
+        {% block content %}
+        <h4> Bloque de contenido </h4>
+        {% endblock %}
+
+    </div>
+    
+    {% block extrajs %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type='text/javascript' src='{% static "js/forms.js" %}'></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.js"></script>
+    
+</body>
+
+<!-- Acá creamos el bloque del footer -->
+{% block footer %}
+<footer>
+<div class="footer-content">
+    <h2>Curacaví, Avenida O'higgins #505</h2>
+    <p>Tienda especializada en mascotas. Contáctanos en nuestras redes sociales.</p>
+    <ul class="redes">
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+    </ul>
+</div>
+<div class="footer-bottom">
+    <p>Copyright &copy;2022. Designed By Natalia and Javiera</p>
+</div>
+</footer>
+{% endblock %}
+</html>
+

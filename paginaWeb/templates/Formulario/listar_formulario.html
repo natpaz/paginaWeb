@@ -1,0 +1,51 @@
+{% extends 'Formulario/base/base.html' %} 
+{% block titulo_principal %}
+{%load static%}
+
+<!--Esta página fue creada para listar los formularios.-->
+<html>
+    <head>
+        <title>{% block title %}Lista de Formularios{% endblock title %}</title>
+        {% block css %} {% endblock css %}
+        <link type='text/css' href='{% static 'css/estilo.css' %}' rel='stylesheet'/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+    </head>
+
+
+<div id='titulo_pagina'>
+    Lista de mensajes Registrados
+</div>
+{% endblock %} 
+{% block content %} 
+ 
+    <h3>Listado de Formularios</h3>
+
+    {% if object_list %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Asunto</th>
+                <th>Mensaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for formulario in object_list %}
+            <tr>
+                <th scope="row">{{ formulario.nombre }} </th>
+                <td>{{ formulario.correo }}</td>
+                <td>{{ formulario.asunto }}</td>
+                <td>{{ formulario.mensaje}}</td>
+    
+                <td><a class="btn btn-success" href="{% url 'editar_formulario' formulario.id %}">Editar</a></td>
+                <td><a class="btn btn-danger" href="{% url 'borrar_formulario' formulario.id %}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+        {% else %}
+        <h1>No hay registro de formularios</h1>
+        {% endif %}
+        {% endblock %}

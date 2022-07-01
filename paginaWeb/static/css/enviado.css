@@ -1,0 +1,22 @@
+/* Diseño del archivo html */
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+h1{
+    text-align: center;
+    background-color: palegoldenrod;
+    color: darkkhaki;
+    padding: 100px 20% 100px;
+}
+
+a{
+    background-color: darkkhaki;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    padding: 10px;
+    display: center;
+}

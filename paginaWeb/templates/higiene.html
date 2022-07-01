@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<html>
+    <head>
+        <!-- Acá le damos el nombre a la página -->
+        <title>{% block title %}Higiene{% endblock title %}</title>
+        {% block css %} {% endblock css %}
+        <link type='text/css' href='{% static 'css/higiene.css' %}' rel='stylesheet'/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    </head>
+    <body>
+        
+    {% block navbar %}
+    <!-- Acá creamos la barra de navegación -->
+    <h1>Tienda de mascotas</h1>
+    <nav id="navbar">
+        <div id="nav">
+            <ul>            
+                <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a href="{% url 'accesorios' %}">Accesorios</a></li>
+                <li class="nav-item"><a href="{% url 'entretencion' %}">Entretención</a></li>
+                <li class="nav-item"><a href="{% url 'higiene' %}">Higiene</a></li>
+                <li class="nav-item"><a href="{% url 'agregar_formulario' %}">Formulario</a></li>
+                <li class="nav-item"><a href="{% url 'registrar' %}">Registrarse</a></li>
+        
+                {% if not user.is_authenticated %}        
+                <li class="nav-item"><a href="{% url 'login' %}">Iniciar sesión</a></li>
+                {% endif %}
+                
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <li class="nav-item"><a href="{% url 'listar_formulario' %}">Listar Formularios</a></li>
+                <li class="nav-item"><a href="{% url 'listar_usuario' %}">Listar Usuarios</a></li>
+                {% endif %}
+
+                <li class="nav-item"><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                <span class="ml-md-5"><strong>Usuario: {{ user.get_username }}</strong></span>
+                {% endif %}                
+            </ul>
+        </div>                                 
+    </nav>
+    {% endblock %}
+
+    <!-- Acá creamos el bloque sección para ingresar los productos en venta. -->
+    {% block section%}
+    <section>
+        <div class="contenedor">
+            <div class="item" id="item1">
+                <img class="four-columns" src="static/img/higiene/hgato1.png" alt="Limpieza dental AFP"><h2>Limpieza dental AFP</h2>
+                <p>$5.000</p>
+            </div>
+            <div class="item" id="item2">
+                <img class="four-columns" src="static/img/higiene/hgato2.png" alt="Pasta de dientes AFP"><h2>Pasta de dientes AFP</h2>
+                <p>$3.000</p>
+            </div>
+            <div class="item" id="item3">
+                <img class="four-columns" src="static/img/higiene/hgato3.png" alt="Reparador de pelaje Biogance"><h2>Reparador de pelaje Biogance</h2>
+                <p>$7.000</p>
+            </div>
+            <div class="item" id="item4">
+                <img class="four-columns" src="static/img/Higiene/hgato4.png" alt="Limpiador de dientes Bioline"><h2>Limpiador de dientes Bioline</h2>
+                <p>$3.000</p>
+            </div>
+            <div class="item" id="item5">
+                <img class="four-columns" src="static/img/Higiene/hgato5.png" alt="Colonia Furrish"><h2>Colonia Furrish</h2>
+                <p>$3.000</p>
+            </div>
+            <div class="item" id="item6">
+                <img class="four-columns" src="static/img/Higiene/hgato6.png" alt="Shampoo Skouts Honor"><h2>Shampoo Skouts Honor</h2>
+                <p>$5.000</p>
+            </div>
+            <div class="item" id="item7">
+                <img class="four-columns" src="static/img/Higiene/hperro1.png" alt="Limpiador de ojos Bioline"><h2>Limpiador de ojos Bioline</h2>
+                <p>$4.000</p>
+            </div>
+            <div class="item" id="item8">
+                <img class="four-columns" src="static/img/Higiene/hperro2.png" alt="Desodorizante Oxyfresh"><h2>Desodorizante Oxyfresh</h2>
+                <p>$5.000</p>
+            </div>
+            <div class="item" id="item9">
+                <img class="four-columns" src="static/img/Higiene/hperro3.png" alt="Spray anti picazón Oxymed"><h2>Spray anti picazón Oxymed</h2>
+                <p>$3.500</p>
+            </div>
+            <div class="item" id="item10">
+                <img class="four-columns" src="static/img/Higiene/hperro4.png" alt="Toallitas limpiadoras Biogance"><h2>Toallitas limpiadoras Biogance</h2>
+                <p>$3.000</p>
+            </div>   
+            <div class="item" id="item11">
+                <img class="four-columns" src="static/img/Higiene/hperro5.png" alt="Colonia citrus Biogance"><h2>Colonia citrus Biogance</h2>
+                <p>$3.000</p>
+            </div>
+            <div class="item" id="item12">
+                <img class="four-columns" src="static/img/Higiene/hperro6.png" alt="Enguaje bucal Bioline"><h2>Enguaje bucal Bioline</h2>
+                <p>$3.500</p>
+            </div> 
+        </div>
+    </section>
+    {%endblock%}
+    
+    <!-- Acá creamos el bloque del footer -->
+    {%block footer%}
+    <footer>
+        <div class="footer-content">
+            <h2>Curacaví, Avenida O'higgins #505</h2>
+            <p>Tienda especializada en mascotas. Contáctanos en nuestras redes sociales.</p>
+            <ul class="redes">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright &copy;2022. Designed By Natalia and Javiera</p>
+        </div>
+    </footer>
+    {%endblock%}
+
+</body>
+</html>
