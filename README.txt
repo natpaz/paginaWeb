@@ -5,4 +5,4 @@ Javiera Bermúdez González
 
 Link Github:
 
-https://github.com/natpaz/proyectoweb
+https://github.com/natpaz/paginaWeb
