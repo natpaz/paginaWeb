@@ -18,7 +18,7 @@
         <div id="nav">
             <ul>            
                 <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a href="{% url 'accesorios' %}">Accesorios</a></li>
+                <li class="nav-item"><a href="{% url 'productos_venta' %}">Accesorios</a></li>
                 <li class="nav-item"><a href="{% url 'entretencion' %}">Entretención</a></li>
                 <li class="nav-item"><a href="{% url 'higiene' %}">Higiene</a></li>
                 <li class="nav-item"><a href="{% url 'agregar_formulario' %}">Formulario</a></li>
@@ -32,6 +32,7 @@
                 {% if user.is_superuser %}
                 <li class="nav-item"><a href="{% url 'listar_formulario' %}">Listar Formularios</a></li>
                 <li class="nav-item"><a href="{% url 'listar_usuario' %}">Listar Usuarios</a></li>
+                <li class="nav-item"><a href="{% url 'listar_producto' %}">Listar Productos</a></li>
                 {% endif %}
 
                 <li class="nav-item"><a href="{% url 'logout' %}">Cerrar Sesión</a></li>

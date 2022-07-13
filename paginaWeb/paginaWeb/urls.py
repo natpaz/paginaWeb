@@ -27,6 +27,8 @@ urlpatterns = [
     
     path('formulario/', include('Formulario.urls')),
     
+    path('producto/', include('Producto.urls')),
+    
     path('usuario/', include('Usuario.urls')),
     
     path('login/', LoginView.as_view(redirect_authenticated_user=True,template_name='Usuario/login.html'), name='login'),
@@ -40,4 +42,5 @@ urlpatterns = [
     path('entretencion', TemplateView.as_view(template_name='entretencion.html'), name='entretencion'),
     
     path('higiene', TemplateView.as_view(template_name='higiene.html'), name='higiene'),
+        
 ] 

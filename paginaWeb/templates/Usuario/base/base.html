@@ -34,6 +34,7 @@
                 {% if user.is_superuser %}
                 <li class="nav-item"><a href="{% url 'listar_formulario' %}">Listar Formularios</a></li>
                 <li class="nav-item"><a href="{% url 'listar_usuario' %}">Listar Usuarios</a></li>
+                <li class="nav-item"><a href="{% url 'listar_producto' %}">Listar Productos</a></li>
                 {% endif %}
 
                 <li class="nav-item"><a href="{% url 'logout' %}">Cerrar Sesión</a></li>

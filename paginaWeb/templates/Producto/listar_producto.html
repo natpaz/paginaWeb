@@ -1,0 +1,45 @@
+{% extends 'Producto/base/base.html' %}
+{% load static %}
+ 
+{% block content %}
+<div class="container">
+<h1 class="display-3">Producto</h1>
+<hr>
+<a class="btn" role="button" href="{% url 'producto_form' %}">Agregar</a>
+<hr>
+ 
+{% if not object_list %}
+<h1>No hay registro de productos</h1>
+<br><br><br><br><br><br><br><br>
+{% else %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Codigo</td>
+            <td>Nombre</td>
+            <td>Precio</td>
+            <td>Imagen</td>
+
+        </tr>
+    </thead>
+    <tbody>  
+        {% for producto in object_list %}      
+        <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.codigo }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.precio }}</td>
+            <td><img src= ../../static/img/{{ producto.imagen }} style="width: 100px;"/> </td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'editar_producto' producto.id%}">  Editar  </a>
+                <a class="btn btn-danger" href="{% url 'borrar_producto' producto.id%}">Eliminar</a>
+            </td>
+            
+        </tr>
+        {% endfor %}                                
+    </tbody>
+</table>
+{% endif %}
+</div>
+{% endblock %}

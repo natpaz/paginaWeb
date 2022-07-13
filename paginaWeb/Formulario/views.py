@@ -11,6 +11,10 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .forms import FormularioForm
 from .models import Formulario
 from django.urls import reverse_lazy
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+from django.conf import settings
 
 # Create your views here.
 def listar_formulario(request):
@@ -116,5 +120,10 @@ def formulario_element(request, pk):
             serializer.save() 
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
 

@@ -1,0 +1,42 @@
+{% extends 'Producto/base/base.html' %}
+{% load static %}
+
+<html>
+    <head>
+        <!-- Acá le damos el nombre a la página -->
+        <title>{% block title %}Accesorios{% endblock title %}</title>
+        {% block css %} {% endblock css %}
+        <link type='text/css' href='{% static 'css/accesorios.css' %}' rel='stylesheet'/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    </head>
+    <body>
+    {% block content %}   
+    <h1 class="display-3">Accesorios para tu mascota</h1>
+{% if not object_list %}
+<h1>No hay registro de productos</h1>
+<br><br><br><br><br><br><br><br>
+{% else %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Imagen</td>
+            <td>Nombre</td>
+            <td>Precio</td>
+
+
+        </tr>
+    </thead>
+    <tbody>  
+        {% for producto in object_list %}      
+        <tr>
+            <td><img src= ../../static/img/{{ producto.imagen }} style="width: 100px;"/> </td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.precio }}</td>
+            
+        </tr>
+        {% endfor %}                                
+    </tbody>
+</table>
+{% endif %}
+</div>
+{% endblock %}
